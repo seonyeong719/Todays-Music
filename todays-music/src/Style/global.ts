@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
 	    }
     }
 	body{
-		font-family: 'Nanum_regular';
+		font-family: 'LINESeedKR-Rg';
 	}
 	button: {
 		border: none;

@@ -7,35 +7,35 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "form/login",
+    path: "",
     element: "",
   },
   {
-    path: "form/signup",
+    path: "",
     element: "",
     children: [
       {
-        path: "chat",
+        path: "",
         element: "",
       },
       {
-        path: "item_detail/:idx",
+        path: "",
         element: "",
       },
       {
-        path: "landing",
+        path: "",
         element: "",
       },
       {
-        path: "main",
+        path: "",
         element: "",
       },
       {
-        path: "market_price/:word",
+        path: "",
         element: "",
       },
       {
-        path: "market_price",
+        path: "",
         element: "",
       },
     ],
