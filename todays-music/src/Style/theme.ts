@@ -1,10 +1,9 @@
-const color = {
+const COLOR = {
   primary: {
     100: "#FFD1D1",
     200: "#FF9494",
     300: "#F87474",
     400: "#FF3647",
-    500: "#FF0000",
   },
   subColor: "#FFECEC",
   hover: "#db2e3d",
@@ -26,7 +25,7 @@ const color = {
   },
 };
 
-const fontSize = {
+const FONT_SIZE = {
   micro: "6px",
   es: "10px",
   xs: "12px",
@@ -38,7 +37,7 @@ const fontSize = {
   xl: "32px",
 };
 
-const fontWeight = {
+const FONT_WEIGHT = {
   light: "300",
   regular: "400",
   bold: "700",
@@ -61,8 +60,8 @@ const device = {
 };
 
 export const theme = {
-  color,
-  fontSize,
-  fontWeight,
+  COLOR,
+  FONT_SIZE,
+  FONT_WEIGHT,
   device,
 };
