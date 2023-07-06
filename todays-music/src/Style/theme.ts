@@ -6,7 +6,7 @@ const COLOR = {
     400: "#FF3647",
   },
   subColor: "#FFECEC",
-  hover: "#db2e3d",
+  hover: "",
   fontColor: {
     100: "#FFFFFF",
     200: "#646F7C",
@@ -16,7 +16,6 @@ const COLOR = {
   success: "#028202",
   white: "#FFFFFF",
   black: "#000000",
-  bg: "rgb(238, 241, 245)",
   gray: {
     100: "#E9E9E9",
     200: "#D9D9D9",
