@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import { flexAlignCenter, flexAllCenter } from "../../../Style/common";
 // import { useState } from "react";
 
 function Header() {
@@ -39,31 +40,36 @@ export default Header;
 
 const Wrapper = styled.div`
   width: 100%;
-  position: sticky;
+  ${flexAllCenter}
+  position: fixed;
   top: 0;
   z-index: 99;
   align-items: center;
   height: 90px;
   margin-bottom: 40px;
+  padding: 20px 100px;
   box-shadow: 2px 2px 5px 2px gray;
 `;
 
 const Wrap = styled.div`
-  justify-content: space-between;
   display: flex;
-  width: 70%;
+  justify-content: space-between;
+  width: 50%;
 `;
 
 const NavBar = styled.ul`
-  align-items: center;
+  ${flexAlignCenter}
   display: flex;
   font-size: ${({ theme }) => theme.FONT_SIZE.base};
-  font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
+  color: ${({ theme }) => theme.COLOR.fontColor[300]};
+
   & > li {
     margin: 0 10px;
     padding: 0 15px;
     cursor: pointer;
     position: relative;
+    list-style: none;
   }
 `;
 
