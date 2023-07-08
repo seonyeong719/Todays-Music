@@ -1,8 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
 
 const GlobalStyles = createGlobalStyle`
-    /* ${reset} */
+    
     *{
 		box-sizing: border-box;
         @font-face {
@@ -17,6 +16,8 @@ const GlobalStyles = createGlobalStyle`
 		font-family:'LINESeedKR-Bd';
 		src: url('/Asset/Font/LINESeedKR-Bd.ttf');
 	    }
+  		padding: 0;
+  		margin: 0;
     }
 	body{
 		font-family: 'LINESeedKR-Rg';

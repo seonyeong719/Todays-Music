@@ -1,34 +1,9 @@
 import styled from "styled-components";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { flexJustifyCenter } from "Style/common";
+import { Link, useNavigate } from "react-router-dom";
+// import { useState } from "react";
 
 function Header() {
   const navigate = useNavigate();
-  const [scroll, setScroll] = useState<boolean>(false);
-  const [locationUrl, setLocationUrl] = useState<string>("");
-
-  const handleScroll = () => {
-    if (window.scrollY >= 20) {
-      setScroll(true);
-    } else {
-      setScroll(false);
-    }
-  };
-
-  const location = useLocation();
-  console.log(location.pathname);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    setLocationUrl(location.pathname);
-  }, [location]);
 
   const navMenu = [
     {
@@ -38,10 +13,6 @@ function Header() {
     {
       title: "오늘의 날씨",
       address: "/todays-weather",
-    },
-    {
-      title: "",
-      address: "/",
     },
   ];
 
@@ -57,7 +28,6 @@ function Header() {
           {navMenu.map((nav, idx) => (
             <li key={idx} onClick={() => onClickNav(nav.address)}>
               {nav.title}
-              {locationUrl === nav.address && <S.UnderBar />}
             </li>
           ))}
         </S.NavBar>
@@ -68,7 +38,6 @@ function Header() {
 export default Header;
 
 const Wrapper = styled.div`
-  ${flexJustifyCenter}
   width: 100%;
   position: sticky;
   top: 0;
@@ -76,6 +45,7 @@ const Wrapper = styled.div`
   align-items: center;
   height: 90px;
   margin-bottom: 40px;
+  box-shadow: 2px 2px 5px 2px gray;
 `;
 
 const Wrap = styled.div`
