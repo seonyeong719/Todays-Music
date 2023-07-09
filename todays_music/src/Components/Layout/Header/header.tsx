@@ -54,7 +54,7 @@ const Wrapper = styled.div`
 const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 60%;
 `;
 
 const NavBar = styled.ul`

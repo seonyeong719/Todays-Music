@@ -1,15 +1,29 @@
 import { styled } from "styled-components";
 import LP from "../../Components/LP/lp";
-import { flexAllCenter } from "../../Style/common";
-import { useEffect } from "react";
+import { flexAllCenter, flexJustifyCenter } from "../../Style/common";
 import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
-import Weather from "../Weather/weather";
 
 function MainPage() {
-  // const { data } = useGetVillageWeather();
+  const ww = {
+    numOfRows: 10,
+    pageNo: 1,
+    dataType: "JSON",
+    base_date: 20230709,
+    base_time: 1400,
+    nx: 55,
+    ny: 127,
+  };
+
+  const { data } = useGetVillageWeather(ww);
+  console.log(data);
+
   return (
     <S.Wrapper>
       <S.Wrap>
+        <S.TitleWrap>
+          <Time>시간</Time>
+          <S.Weather>날씨</S.Weather>
+        </S.TitleWrap>
         <S.Title>Recommend music for today's weather!</S.Title>
         <LP />
       </S.Wrap>
@@ -32,6 +46,20 @@ const Wrap = styled.div`
   flex-direction: column;
 `;
 
+const TitleWrap = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: end;
+`;
+
+const Weather = styled.div`
+  font-size: 50px;
+`;
+
+const Time = styled.div`
+  font-size: 50px;
+`;
+
 const Title = styled.span`
   font-size: ${({ theme }) => theme.FONT_SIZE.xl};
   font-size: 70px;
@@ -44,5 +72,7 @@ const Title = styled.span`
 const S = {
   Wrapper,
   Wrap,
+  TitleWrap,
   Title,
+  Weather,
 };

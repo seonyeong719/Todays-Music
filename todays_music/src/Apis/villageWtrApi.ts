@@ -6,10 +6,9 @@ const WeatherApi = {
   villageW(w: Weather): Promise<AxiosResponse<Weather>> {
     const PATH = "/getVilageFcst";
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-
     return Axios.get<Weather>(`${PATH}?serviceKey=${API_KEY}`, {
       params: {
-        w,
+        ...w,
       },
     });
   },
