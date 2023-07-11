@@ -1,28 +1,34 @@
 import { styled } from "styled-components";
 import LP from "../../Components/LP/lp";
-import { flexAllCenter, flexJustifyCenter } from "../../Style/common";
+import { flexAllCenter } from "../../Style/common";
 import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
+import { TodayDate, TodayTime } from "../../Utils/dateTime";
 
 function MainPage() {
+  console.log(typeof TodayDate());
   const ww = {
     numOfRows: 10,
     pageNo: 1,
     dataType: "JSON",
-    base_date: 20230709,
-    base_time: 1400,
+    base_date: TodayDate(),
+    base_time: TodayTime(),
     nx: 55,
     ny: 127,
   };
 
-  const { data } = useGetVillageWeather(ww);
+  const { data }: any = useGetVillageWeather(ww);
+  // console.log(data?.response.body.items.item);
   console.log(data);
+  console.log(TodayTime());
+  console.log(TodayDate());
 
   return (
     <S.Wrapper>
       <S.Wrap>
         <S.TitleWrap>
-          <Time>시간</Time>
-          <S.Weather>날씨</S.Weather>
+          {/* <S.Time>시간</S.Time> */}
+          <S.Weathers src="/Assets/Img/비.png" />
+          <S.Time></S.Time>
         </S.TitleWrap>
         <S.Title>Recommend music for today's weather!</S.Title>
         <LP />
@@ -52,12 +58,14 @@ const TitleWrap = styled.div`
   justify-content: end;
 `;
 
-const Weather = styled.div`
-  font-size: 50px;
+const Weathers = styled.img`
+  width: 4rem;
+  background-color: white;
 `;
 
 const Time = styled.div`
   font-size: 50px;
+  background-color: white;
 `;
 
 const Title = styled.span`
@@ -74,5 +82,6 @@ const S = {
   Wrap,
   TitleWrap,
   Title,
-  Weather,
+  Weathers,
+  Time,
 };
