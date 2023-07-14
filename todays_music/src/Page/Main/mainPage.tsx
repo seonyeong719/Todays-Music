@@ -2,7 +2,8 @@ import { styled } from "styled-components";
 import LP from "../../Components/LP/lp";
 import { flexAllCenter } from "../../Style/common";
 import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
-import { TodayDate, TodayTime } from "../../Utils/dateTime";
+import { TodayDate } from "../../Utils/dateTime";
+import { BaseTime } from "../../Utils/baseTime";
 
 function MainPage() {
   console.log(typeof TodayDate());
@@ -11,22 +12,21 @@ function MainPage() {
     pageNo: 1,
     dataType: "JSON",
     base_date: TodayDate(),
-    base_time: TodayTime(),
-    nx: 55,
-    ny: 127,
+    base_time: BaseTime(),
+    nx: 59,
+    ny: 125,
   };
 
   const { data }: any = useGetVillageWeather(ww);
   // console.log(data?.response.body.items.item);
   console.log(data);
-  console.log(TodayTime());
   console.log(TodayDate());
 
   return (
     <S.Wrapper>
       <S.Wrap>
         <S.TitleWrap>
-          {/* <S.Time>시간</S.Time> */}
+          {/* <S.Time>{`${}`}</S.Time> */}
           <S.Weathers src="/Assets/Img/비.png" />
           <S.Time></S.Time>
         </S.TitleWrap>

@@ -4,7 +4,11 @@ let now = new Date();
 export const TodayDate = () => {
   let year = String(now.getFullYear());
   let month = String(now.getMonth() + 1 < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1);
-  let day = String(now.getDate());
+  let day = now.getDate();
+
+  if (0 <= TodayTime() && 199 >= TodayTime()) {
+    day -= 1;
+  }
 
   return Number(year + month + day);
 };
