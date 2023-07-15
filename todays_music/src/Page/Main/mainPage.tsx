@@ -6,7 +6,6 @@ import { TodayDate } from "../../Utils/dateTime";
 import { BaseTime } from "../../Utils/baseTime";
 
 function MainPage() {
-  console.log(typeof TodayDate());
   const ww = {
     numOfRows: 10,
     pageNo: 1,
@@ -18,15 +17,22 @@ function MainPage() {
   };
 
   const { data }: any = useGetVillageWeather(ww);
-  // console.log(data?.response.body.items.item);
-  console.log(data);
-  console.log(TodayDate());
+  let datas = data?.response.body.items?.item;
+
+  // const b = datas?.map((el: { category: string }) => ({ [el.category]: el }));
+
+  const tmp = datas?.find((e: { category: string }) => e.category === "TMP");
+  const pop = datas?.find((e: { category: string }) => e.category === "POP");
+  const sky = datas?.find((e: { category: string }) => e.category === "SKY");
+  const pty = datas?.find((e: { category: string }) => e.category === "PTY");
+
+  console.log(tmp.fcstValue);
 
   return (
     <S.Wrapper>
       <S.Wrap>
         <S.TitleWrap>
-          {/* <S.Time>{`${}`}</S.Time> */}
+          <S.Time>{`현재 온도는 ${tmp.fcstValue}도 입니다!`}</S.Time>
           <S.Weathers src="/Assets/Img/비.png" />
           <S.Time></S.Time>
         </S.TitleWrap>
