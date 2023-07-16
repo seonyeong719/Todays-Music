@@ -24,12 +24,14 @@ function Header() {
   return (
     <S.Wrapper>
       <S.Wrap>
-        <Link to="/">Home Img</Link>
+        <Link to="/">
+          <S.LogoImg src="/Assets/Img/logo.png" />
+        </Link>
         <S.NavBar>
           {navMenu.map((nav, idx) => (
-            <li key={idx} onClick={() => onClickNav(nav.address)}>
+            <S.Li key={idx} onClick={() => onClickNav(nav.address)}>
               {nav.title}
-            </li>
+            </S.Li>
           ))}
         </S.NavBar>
       </S.Wrap>
@@ -57,6 +59,9 @@ const Wrap = styled.div`
   width: 60%;
 `;
 
+const LogoImg = styled.img`
+  width: 8rem;
+`;
 const NavBar = styled.ul`
   ${flexAlignCenter}
   display: flex;
@@ -83,9 +88,15 @@ const UnderBar = styled.div`
   bottom: -10px;
 `;
 
+const Li = styled.li`
+  color: white;
+`;
+
 const S = {
   Wrapper,
   Wrap,
+  LogoImg,
   NavBar,
   UnderBar,
+  Li,
 };

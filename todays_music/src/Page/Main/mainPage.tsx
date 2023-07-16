@@ -16,29 +16,30 @@ function MainPage() {
     ny: 125,
   };
 
-  const { data }: any = useGetVillageWeather(ww);
+  const { data, isLoading }: any = useGetVillageWeather(ww);
   let datas = data?.response.body.items?.item;
-
-  // const b = datas?.map((el: { category: string }) => ({ [el.category]: el }));
 
   const tmp = datas?.find((e: { category: string }) => e.category === "TMP");
   const pop = datas?.find((e: { category: string }) => e.category === "POP");
   const sky = datas?.find((e: { category: string }) => e.category === "SKY");
   const pty = datas?.find((e: { category: string }) => e.category === "PTY");
 
-  console.log(tmp.fcstValue);
-
   return (
     <S.Wrapper>
-      <S.Wrap>
-        <S.TitleWrap>
-          <S.Time>{`현재 온도는 ${tmp.fcstValue}도 입니다!`}</S.Time>
-          <S.Weathers src="/Assets/Img/비.png" />
-          <S.Time></S.Time>
-        </S.TitleWrap>
-        <S.Title>Recommend music for today's weather!</S.Title>
-        <LP />
-      </S.Wrap>
+      <Img src="/Assets/Img/ㅊㅁㅊㅁ.png" />
+      {isLoading ? (
+        <div>skeleton</div>
+      ) : (
+        <S.Wrap>
+          <S.TitleWrap>
+            <S.Time>{`현재 온도는 ${tmp?.fcstValue}도 입니다!`}</S.Time>
+            <S.Weathers src="/Assets/Img/비.png" />
+            <S.Time></S.Time>
+          </S.TitleWrap>
+          <S.Title>Recommend music for today's weather!</S.Title>
+          <LP />
+        </S.Wrap>
+      )}
     </S.Wrapper>
   );
 }
@@ -47,9 +48,16 @@ export default MainPage;
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20220707/pngtree-blue-sky-background-on-good-weather-image_1417461.jpg");
+  background-image: url("/Assets/Img/뮤직 날씨 좋음.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+`;
+
+const Img = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
 `;
 
 const Wrap = styled.div`
@@ -67,20 +75,23 @@ const TitleWrap = styled.div`
 const Weathers = styled.img`
   width: 4rem;
   background-color: white;
+  z-index: 11;
 `;
 
 const Time = styled.div`
-  font-size: 50px;
+  font-size: 30px;
   background-color: white;
+  z-index: 11;
 `;
 
 const Title = styled.span`
-  font-size: ${({ theme }) => theme.FONT_SIZE.xl};
-  font-size: 70px;
-  max-width: 600px;
+  font-size: 100px;
+  max-width: 800px;
   text-align: center;
   color: ${({ theme }) => theme.COLOR.fontColor[100]};
   margin-bottom: 100px;
+  font-family: "Lobster-Regular.ttf";
+  z-index: 11;
 `;
 
 const S = {

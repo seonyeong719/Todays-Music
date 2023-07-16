@@ -1,4 +1,3 @@
-import { AiFillCaretRight, AiOutlinePause } from "react-icons/ai";
 import styled from "styled-components";
 import { flexAllCenter } from "../../Style/common";
 
@@ -30,7 +29,7 @@ function Music() {
   return (
     <S.Wrapper>
       <S.MusicWrapper>
-        <h1>오늘의 음악</h1>
+        <S.Title>오늘의 음악</S.Title>
         <S.MusicContainer>
           <img src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/8uEC/image/LkDCPehk0dm5Rz3m19-Y3DIC6u4" />
           <S.MusicList>
@@ -38,13 +37,8 @@ function Music() {
             <div>가수명</div>
             {musicList.map((list) => (
               <S.Li>
-                <div>
-                  <AiFillCaretRight size={"25"} />
-                  <AiOutlinePause size={"25"} />
-                  {list.title}
-                  <audio src={list.audio} controls></audio>
-                </div>
-                <div>{list.time}</div>
+                <div>{list.title}</div>
+                <audio src={list.audio} controls></audio>
               </S.Li>
             ))}
           </S.MusicList>
@@ -56,7 +50,7 @@ function Music() {
 export default Music;
 
 const Wrapper = styled.div`
-  background-color: skyblue;
+  background: linear-gradient(#d1c0a8, #e8ded1); // #fafdf3
   width: 100%;
   height: 100vh;
   ${flexAllCenter}
@@ -69,6 +63,11 @@ const MusicWrapper = styled.div`
     border-bottom: 1px solid white;
     padding-bottom: 30px;
   }
+`;
+
+const Title = styled.span`
+  font-size: 30px;
+  color: white;
 `;
 const MusicContainer = styled.div`
   display: flex;
@@ -93,20 +92,15 @@ const MusicList = styled.div`
   }
 `;
 const Li = styled.div`
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  & > div {
-    display: flex;
-    align-items: center;
-    /* & > audio {
-			display: none;
-		} */
-  }
   &:hover {
     color: red;
   }
 `;
-const S = { Wrapper, MusicWrapper, MusicContainer, MusicList, Li };
+const S = {
+  Wrapper,
+  MusicWrapper,
+  Title,
+  MusicContainer,
+  MusicList,
+  Li,
+};

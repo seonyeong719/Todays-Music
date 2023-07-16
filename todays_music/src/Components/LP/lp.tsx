@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 function LP() {
   return (
     <S.Box>
-      <S.Img src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/8uEC/image/LkDCPehk0dm5Rz3m19-Y3DIC6u4" />
+      <S.Img src="https://cdnimg.melon.co.kr/cm/album/images/022/93/703/2293703_500.jpg/melon/resize/282/quality/80/optimize" />
       <S.Lp src="https://cdn.pixabay.com/photo/2019/03/09/02/12/vinyl-record-4043560_1280.png" />
     </S.Box>
   );
@@ -13,10 +13,11 @@ export default LP;
 const Box = styled.div`
   width: 450px;
   height: 350px;
-  background-color: white;
+  background-color: beige;
+  border-radius: 8px;
   box-shadow: 2px 2px 2px 1px gray;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 `;
 
 const Img = styled.img`

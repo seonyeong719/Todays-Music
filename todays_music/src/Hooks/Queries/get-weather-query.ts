@@ -8,6 +8,6 @@ const village = async (w: Weather) => {
 };
 
 export const useGetVillageWeather = (w: Weather) => {
-  const { data } = useQuery(["villageWeathers", w], () => village(w));
-  return { data };
+  const { data, isLoading } = useQuery(["villageWeathers", w], () => village(w));
+  return { data, isLoading };
 };
