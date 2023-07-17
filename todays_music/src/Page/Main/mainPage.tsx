@@ -4,6 +4,7 @@ import { flexAllCenter } from "../../Style/common";
 import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
 import { TodayDate } from "../../Utils/dateTime";
 import { BaseTime } from "../../Utils/baseTime";
+import { WeatherData } from "../../Utils/weatherData";
 
 function MainPage() {
   const ww = {
@@ -24,6 +25,11 @@ function MainPage() {
   const sky = datas?.find((e: { category: string }) => e.category === "SKY");
   const pty = datas?.find((e: { category: string }) => e.category === "PTY");
 
+  console.log(sky);
+  console.log(pty);
+
+  let weatherImg = WeatherData(sky?.fcstValue, pty?.fcstValue);
+
   return (
     <S.Wrapper>
       <Img src="/Assets/Img/ㅊㅁㅊㅁ.png" />
@@ -33,8 +39,7 @@ function MainPage() {
         <S.Wrap>
           <S.TitleWrap>
             <S.Time>{`현재 온도는 ${tmp?.fcstValue}도 입니다!`}</S.Time>
-            <S.Weathers src="/Assets/Img/비.png" />
-            <S.Time></S.Time>
+            <S.Weathers src={weatherImg} />
           </S.TitleWrap>
           <S.Title>Recommend music for today's weather!</S.Title>
           <LP />
@@ -69,18 +74,18 @@ const Wrap = styled.div`
 const TitleWrap = styled.div`
   display: flex;
   width: 100%;
+  align-items: center;
   justify-content: end;
 `;
 
 const Weathers = styled.img`
   width: 4rem;
-  background-color: white;
   z-index: 11;
+  margin: 0 1rem;
 `;
 
 const Time = styled.div`
-  font-size: 30px;
-  background-color: white;
+  font-size: 1.5rem;
   z-index: 11;
 `;
 
