@@ -1,23 +1,32 @@
-export const musicList = [
+export const SUNNY_MUSIC = [
   {
-    title: "Like Someone In Love",
-    singer: "park",
-    time: "00:36",
-    img: "https://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/042/902/976/42902976_1405667580045_1_600x600.JPG/dims/resize/Q_80,0",
-    audio: "/assets/audio/test.mp3",
+    title: "Beautiful Love",
+    singer: "Kenny Barron",
+    img: "https://i.scdn.co/image/ab67616d00001e027248733118b83df0d962e836",
+    audio: "/Assets/Audio/sunny/Kenny Barron - Beautiful Love.mp3",
   },
   {
-    title: "Butter",
-    singer: "BTS",
-    time: "00:36",
-    img: "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/8uEC/image/LkDCPehk0dm5Rz3m19-Y3DIC6u4",
-    audio: "/assets/audio/test.mp3",
+    title: "Emily",
+    singer: "Kenny Barron",
+    img: "https://i.scdn.co/image/ab67616d00001e027248733118b83df0d962e836",
+    audio: "/Assets/Audio/sunny/Kenny Barron - Emily.mp3",
   },
   {
-    title: "You Cant Hide Away From Love",
-    singer: "Jamie Cullum",
-    time: "00:36",
-    img: "https://cdn.muztext.com/i/32847573405913925347.jpg",
-    audio: "/assets/audio/test.mp3",
+    title: "On The Sunny Side Of The Street",
+    singer: "Rob Van Bavel",
+    img: "https://i1.sndcdn.com/artworks-sxKv4UtS2D7l-0-t500x500.jpg",
+    audio: "/Assets/Audio/sunny/On The Sunny Side Of The Street.mp3",
+  },
+  {
+    title: "Peri's Scope",
+    singer: "Bill Evans",
+    img: "https://images.genius.com/1df731815f0f935bc250d7d7da102412.1000x1000x1.jpg",
+    audio: "/Assets/Audio/sunny/Peri's Scope - Bill Evans.mp3",
+  },
+  {
+    title: "Without A Song",
+    singer: "Cedar Walton",
+    img: "https://i.scdn.co/image/ab67616d0000b273d893b44578aae902395da509",
+    audio: "/Assets/Audio/sunny/Without A Song.mp3",
   },
 ];

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { flexAlignCenter, flexAllCenter } from "../../../Style/common";
-// import { useState } from "react";
 
 function Header() {
   const navigate = useNavigate();

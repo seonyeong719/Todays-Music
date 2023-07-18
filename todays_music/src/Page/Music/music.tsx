@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { flexAllCenter } from "../../Style/common";
-import { musicList } from "../../Consts/musicList";
+import { SUNNY_MUSIC } from "../../Consts/musicList";
+
+// import { musicList } from "../../Consts/musicList";
 
 function Music() {
   return (
@@ -12,7 +14,7 @@ function Music() {
           <S.MusicList>
             <h3>노래제목</h3>
             <div>가수명</div>
-            {musicList.map((list) => (
+            {SUNNY_MUSIC.map((list) => (
               <S.Li>
                 <div>{list.title}</div>
                 <audio src={list.audio} controls></audio>
@@ -69,8 +71,7 @@ const MusicList = styled.div`
   }
 `;
 const Li = styled.div`
-  &:hover {
-    color: red;
+  & > audio {
   }
 `;
 const S = {
