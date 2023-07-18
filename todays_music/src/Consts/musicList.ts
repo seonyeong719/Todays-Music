@@ -15,7 +15,7 @@ export const SUNNY_MUSIC = [
     title: "On The Sunny Side Of The Street",
     singer: "Rob Van Bavel",
     img: "https://i1.sndcdn.com/artworks-sxKv4UtS2D7l-0-t500x500.jpg",
-    audio: "/Assets/Audio/sunny/On The Sunny Side Of The Street.mp3",
+    audio: "/Assets/Audio/sunny/Rob Van Bavel-On The Sunny Side Of The Street.mp3",
   },
   {
     title: "Peri's Scope",
@@ -27,6 +27,6 @@ export const SUNNY_MUSIC = [
     title: "Without A Song",
     singer: "Cedar Walton",
     img: "https://i.scdn.co/image/ab67616d0000b273d893b44578aae902395da509",
-    audio: "/Assets/Audio/sunny/Without A Song.mp3",
+    audio: "/Assets/Audio/sunny/Cedar Walton-Without A Song.mp3",
   },
 ];

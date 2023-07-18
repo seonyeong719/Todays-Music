@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { flexAllCenter } from "../../Style/common";
 import { SUNNY_MUSIC } from "../../Consts/musicList";
 
-// import { musicList } from "../../Consts/musicList";
-
 function Music() {
   return (
     <S.Wrapper>

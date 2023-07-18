@@ -25,9 +25,6 @@ function MainPage() {
   const sky = datas?.find((e: { category: string }) => e.category === "SKY");
   const pty = datas?.find((e: { category: string }) => e.category === "PTY");
 
-  console.log(sky);
-  console.log(pty);
-
   let weatherImg = WeatherData(sky?.fcstValue, pty?.fcstValue);
 
   return (
