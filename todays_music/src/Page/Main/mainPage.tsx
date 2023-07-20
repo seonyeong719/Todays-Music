@@ -7,7 +7,7 @@ import { BaseTime } from "../../Utils/baseTime";
 import { WeatherData } from "../../Utils/weatherData";
 
 function MainPage() {
-  const ww = {
+  const wth = {
     numOfRows: 10,
     pageNo: 1,
     dataType: "JSON",
@@ -17,7 +17,7 @@ function MainPage() {
     ny: 125,
   };
 
-  const { data, isLoading }: any = useGetVillageWeather(ww);
+  const { data, isLoading }: any = useGetVillageWeather(wth);
   let datas = data?.response.body.items?.item;
 
   const tmp = datas?.find((e: { category: string }) => e.category === "TMP");
@@ -26,6 +26,7 @@ function MainPage() {
   const pty = datas?.find((e: { category: string }) => e.category === "PTY");
 
   let weatherImg = WeatherData(sky?.fcstValue, pty?.fcstValue);
+  console.log(sky);
 
   return (
     <S.Wrapper>

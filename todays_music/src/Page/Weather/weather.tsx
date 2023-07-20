@@ -1,15 +1,62 @@
 import { styled } from "styled-components";
-import { flexAllCenter, flexSpaceBetween } from "../../Style/common";
+import { flexAlignCenter, flexAllCenter, flexSpaceBetween } from "../../Style/common";
+import { TodayDate } from "../../Utils/dateTime";
+import { BaseTime } from "../../Utils/baseTime";
+import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
+import { WeatherData } from "../../Utils/weatherData";
 
 function Weather() {
+  const wth = {
+    numOfRows: 10,
+    pageNo: 1,
+    dataType: "JSON",
+    base_date: TodayDate(),
+    base_time: BaseTime(),
+    nx: 59,
+    ny: 125,
+  };
+
+  const { data, isLoading }: any = useGetVillageWeather(wth);
+  let datas = data?.response.body.items?.item;
+
+  const sky = datas?.find((e: { category: string }) => e.category === "SKY");
+  const pty = datas?.find((e: { category: string }) => e.category === "PTY");
+  const tmn = datas?.find((e: { category: string }) => e.category === "TMN");
+  const tmx = datas?.find((e: { category: string }) => e.category === "TMX");
+
+  let weatherImg = WeatherData(sky?.fcstValue, pty?.fcstValue);
+
+  console.log(datas);
   return (
     <S.Wrapper>
       <S.Wrap>
-        <S.Today>오늘의 날씨 이미지</S.Today>
+        <S.Today>
+          <div>날씨 이미지</div>
+          <div>멘트</div>
+          <div>멘트2</div>
+        </S.Today>
         <S.TmpWrap>
-          <S.HighTmp>최고 기온</S.HighTmp>
-          <S.LowTmp>최저 기온</S.LowTmp>
-          <S.Rain>강수량</S.Rain>
+          <S.Tmp>
+            <S.TmpImg>
+              <S.TImg src="/Assets/Img/최고기온.png" />
+              <span>최고 기온</span>
+            </S.TmpImg>
+            <S.Ment>30도</S.Ment>
+          </S.Tmp>
+          <S.Tmp>
+            <S.TmpImg>
+              <S.TImg src="/Assets/Img/최저기온.png" />
+              <span>최저 기온</span>
+            </S.TmpImg>
+            <S.Ment>0도</S.Ment>
+          </S.Tmp>
+          <S.Tmp>
+            <S.TmpImg>
+              <S.TImg src="/Assets/Img/강수량.png" />
+              <span>강수량</span>
+            </S.TmpImg>
+            <S.Ment>0도</S.Ment>
+          </S.Tmp>
         </S.TmpWrap>
       </S.Wrap>
     </S.Wrapper>
@@ -46,17 +93,33 @@ const TmpWrap = styled.div`
   }
 `;
 
-const HighTmp = styled.div``;
+const Tmp = styled.div`
+  ${flexSpaceBetween}
+`;
 
-const LowTmp = styled.div``;
+const TmpImg = styled.div`
+  ${flexAlignCenter}
+  &>span {
+    font-size: 1.2rem;
+  }
+`;
 
-const Rain = styled.div``;
+const TImg = styled.img`
+  width: 4.2rem;
+  margin: 0 1rem;
+`;
+
+const Ment = styled.span`
+  margin-right: 1.5rem;
+  font-size: 2rem;
+`;
 const S = {
   Wrapper,
   Today,
   Wrap,
   TmpWrap,
-  HighTmp,
-  LowTmp,
-  Rain,
+  Tmp,
+  TmpImg,
+  TImg,
+  Ment,
 };
