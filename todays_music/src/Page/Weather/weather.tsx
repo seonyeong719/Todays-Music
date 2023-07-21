@@ -19,6 +19,7 @@ function Weather() {
   const { data, isLoading }: any = useGetVillageWeather(wth);
   let datas = data?.response.body.items?.item;
 
+  const tmp = datas?.find((e: { category: string }) => e.category === "TMP");
   const sky = datas?.find((e: { category: string }) => e.category === "SKY");
   const pty = datas?.find((e: { category: string }) => e.category === "PTY");
   const tmn = datas?.find((e: { category: string }) => e.category === "TMN");
@@ -31,9 +32,8 @@ function Weather() {
     <S.Wrapper>
       <S.Wrap>
         <S.Today>
-          <div>날씨 이미지</div>
-          <div>멘트</div>
-          <div>멘트2</div>
+          <img src={weatherImg} />
+          <div>{`현재 기온은 ${tmp?.fcstValue}도 입니다!`}</div>
         </S.Today>
         <S.TmpWrap>
           <S.Tmp>
@@ -75,7 +75,17 @@ const Today = styled.div`
   width: 25rem;
   height: 35rem;
   border-radius: 1rem;
-  box-shadow: 2px 2px 2px 1px gray;
+  box-shadow: 2px 2px 2px 2px gray;
+  ${flexAlignCenter}
+  justify-content: space-around;
+  flex-direction: column;
+  & > img {
+    width: 20rem;
+  }
+  & > div {
+    font-size: 1.7rem;
+    margin-bottom: 3rem;
+  }
 `;
 
 const Wrap = styled.div`
