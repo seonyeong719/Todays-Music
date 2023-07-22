@@ -1,13 +1,4 @@
 export const WeatherData = (sky: string, pty: string) => {
-  switch (sky) {
-    case "1":
-      return "/Assets/Img/햇빛.png";
-    case "3":
-      return "/Assets/Img/햇빛,구름.png";
-    case "4":
-      return "/Assets/Img/구름.png";
-  }
-
   switch (pty) {
     case "0":
       console.log("none");
@@ -20,5 +11,13 @@ export const WeatherData = (sky: string, pty: string) => {
       return "/Assets/Img/눈.png";
     case "4":
       return "/Assets/Img/비.png";
+  }
+  switch (sky) {
+    case "1":
+      return "/Assets/Img/햇빛.png";
+    case "3":
+      return "/Assets/Img/햇빛,구름.png";
+    case "4":
+      return "/Assets/Img/구름.png";
   }
 };

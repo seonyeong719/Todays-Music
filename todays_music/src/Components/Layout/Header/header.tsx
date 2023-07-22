@@ -49,7 +49,6 @@ const Wrapper = styled.div`
   height: 90px;
   margin-bottom: 40px;
   padding: 20px 100px;
-  box-shadow: 2px 2px 5px 2px gray;
 `;
 
 const Wrap = styled.div`

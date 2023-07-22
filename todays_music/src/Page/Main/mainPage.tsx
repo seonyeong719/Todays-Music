@@ -88,7 +88,7 @@ const Time = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 100px;
+  font-size: 6rem;
   max-width: 800px;
   text-align: center;
   color: ${({ theme }) => theme.COLOR.fontColor[100]};

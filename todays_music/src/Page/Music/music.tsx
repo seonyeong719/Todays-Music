@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { flexAllCenter } from "../../Style/common";
+import { flexAllCenter, flexJustifyCenter } from "../../Style/common";
 import { SUNNY_MUSIC } from "../../Consts/musicList";
 
 function Music() {
   return (
     <S.Wrapper>
       <S.MusicWrapper>
-        <S.Title>오늘의 음악</S.Title>
+        <S.Title>Today's Music</S.Title>
         <S.MusicContainer>
           <img src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/8uEC/image/LkDCPehk0dm5Rz3m19-Y3DIC6u4" />
           <S.MusicList>
@@ -34,23 +34,25 @@ const Wrapper = styled.div`
 `;
 const MusicWrapper = styled.div`
   width: 60%;
-  & > h1 {
-    font-size: 100px;
-    color: white;
-    border-bottom: 1px solid white;
-    padding-bottom: 30px;
-  }
 `;
 
 const Title = styled.span`
-  font-size: 30px;
+  font-size: 6rem;
   color: white;
+  font-family: "Lobster-Regular.ttf";
+  ${flexJustifyCenter}
+  margin-top: 10rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid white;
 `;
+
 const MusicContainer = styled.div`
   display: flex;
   margin: 70px 50px 0 50px;
   & > img {
-    width: 35%;
+    /* width: 35%; */
+    min-width: 25rem;
+    max-height: 25rem;
     margin-right: 100px;
   }
 `;
