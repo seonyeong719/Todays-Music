@@ -23,6 +23,12 @@ const GlobalStyles = createGlobalStyle`
   		padding: 0;
   		margin: 0;
     }
+	html {
+        font-size: 100%;
+        @media screen and (max-width:820px) {
+            font-size:50%;
+        }
+    }
 	body{
 		font-family: 'LINESeedKR-Rg';
 	}

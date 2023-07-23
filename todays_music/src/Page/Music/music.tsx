@@ -1,8 +1,50 @@
 import styled from "styled-components";
 import { flexAllCenter, flexJustifyCenter } from "../../Style/common";
-import { CLOUDY_MUSIC, RAINY_MUSIC, SNOW_MUSIC } from "../../Consts/musicList";
+import { useEffect, useRef } from "react";
+import { useRecoilState } from "recoil";
+import { audioPlay } from "../../Atom/audioPlay.atom";
+import { ImPlay3 } from "react-icons/im";
+import { IoIosPause } from "react-icons/io";
+import { ALL_MUSIC } from "../../Consts/musicList";
 
 function Music() {
+  const audioRefs = useRef<any[]>([]);
+  const [play, setPlay] = useRecoilState(audioPlay);
+
+  const start = (idx: string | number) => {
+    const audioRef = audioRefs.current.find((item) => item.idx === idx)?.ref;
+    console.log(audioRef);
+    if (audioRef && audioRef.current) {
+      audioRef.current.play();
+    }
+    setPlay(true);
+  };
+
+  const stop = (idx: string | number) => {
+    const audioRef = audioRefs.current.find((item) => item.idx === idx)?.ref;
+    if (audioRef && audioRef.current) {
+      audioRef.current.pause();
+    }
+    setPlay(false);
+  };
+
+  useEffect(() => {
+    // if (!audioRefs.current) return;
+    // if (play) {
+    //   audioRefs.current.play();
+    // } else audioRefs.current.pause();
+    audioRefs.current.forEach((item) => {
+      const audioRef = item.ref.current;
+      if (audioRef) {
+        if (play) {
+          audioRef.play();
+        } else {
+          audioRef.pause();
+        }
+      }
+    });
+  }, [play]);
+
   return (
     <S.Wrapper>
       <S.MusicWrapper>
@@ -10,12 +52,34 @@ function Music() {
         <S.MusicContainer>
           <img src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/8uEC/image/LkDCPehk0dm5Rz3m19-Y3DIC6u4" />
           <S.MusicList>
-            {SNOW_MUSIC.map((list) => (
+            {/* {SNOW_MUSIC.map((list, idx: any) => (
               <S.Li>
                 <div>
                   {list.title} - {list.singer}
                 </div>
-                <audio src={list.audio} controls></audio>
+                {play ? <S.IconPauseBtn onClick={stop} /> : <S.IconPlayBtn onClick={start} />}
+                <audio ref={audioRef} id={idx} src={list.audio} controls></audio>
+              </S.Li>
+            ))} */}
+            {ALL_MUSIC.map((list, idx: any) => (
+              <S.Li key={idx}>
+                <div>{/* {list.title} - {list.singer} */}</div>
+                {play ? (
+                  <S.IconPauseBtn onClick={() => stop(idx)} />
+                ) : (
+                  <S.IconPlayBtn onClick={() => start(idx)} />
+                )}
+                {/* <audio ref={(ref) => (audioRefs[idx] = ref)} id={idx} src={list.audio} controls></audio> */}
+                <audio
+                  ref={(ref) => {
+                    if (ref) {
+                      audioRefs.current[idx] = { ref, idx };
+                    }
+                  }}
+                  id={idx}
+                  // src={list.audio}
+                  controls
+                />
               </S.Li>
             ))}
           </S.MusicList>
@@ -24,6 +88,7 @@ function Music() {
     </S.Wrapper>
   );
 }
+
 export default Music;
 
 const Wrapper = styled.div`
@@ -79,6 +144,15 @@ const Li = styled.div`
     width: 27rem;
   }
 `;
+
+const IconPlayBtn = styled(ImPlay3)`
+  cursor: pointer;
+`;
+
+const IconPauseBtn = styled(IoIosPause)`
+  cursor: pointer;
+`;
+
 const S = {
   Wrapper,
   MusicWrapper,
@@ -86,4 +160,6 @@ const S = {
   MusicContainer,
   MusicList,
   Li,
+  IconPlayBtn,
+  IconPauseBtn,
 };

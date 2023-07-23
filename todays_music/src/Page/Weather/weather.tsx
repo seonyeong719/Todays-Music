@@ -9,6 +9,7 @@ import { TodayDate } from "../../Utils/dateTime";
 import { BaseTime } from "../../Utils/baseTime";
 import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
 import { WeatherData } from "../../Utils/weatherData";
+import { www } from "../../Types/weatherType";
 
 function Weather() {
   const wth = {
@@ -31,9 +32,14 @@ function Weather() {
   const pop = datas?.find((e: { category: string }) => e.category === "POP");
   const pcp = datas?.find((e: { category: string }) => e.category === "PCP");
 
-  let weatherImg = WeatherData(sky?.fcstValue, pty?.fcstValue);
+  let weatherImg: string | www | undefined = WeatherData(sky?.fcstValue, pty?.fcstValue);
 
-  console.log(datas);
+  if (typeof weatherImg === "string") {
+    console.log(weatherImg); // 문자열이라면 출력
+  } else if (weatherImg) {
+    console.log(weatherImg.wth); // www 타입이라면 wth 속성 출력
+  }
+
   return (
     <S.Wrapper>
       {isLoading ? (
@@ -43,7 +49,7 @@ function Weather() {
           <S.Title>Today's Weather</S.Title>
           <S.Wrap>
             <S.Today>
-              <img src={weatherImg} />
+              {/* <img src={weatherImg?.img} /> */}
               <div>영등포구 기준</div>
               <div>{`현재 기온은 ${tmp?.fcstValue}도 입니다!`}</div>
             </S.Today>
@@ -67,7 +73,7 @@ function Weather() {
                   <S.TImg src="/Assets/Img/강수량.png" />
                   <span>강수량</span>
                 </S.TmpImg>
-                <S.Ment>{`${pcp?.fcstValue} mm`}</S.Ment>
+                <S.Ment>{`${pcp?.fcstValue}`}</S.Ment>
               </S.Tmp>
             </S.TmpWrap>
           </S.Wrap>

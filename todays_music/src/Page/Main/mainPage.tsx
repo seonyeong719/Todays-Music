@@ -20,13 +20,12 @@ function MainPage() {
   const { data, isLoading }: any = useGetVillageWeather(wth);
   let datas = data?.response.body.items?.item;
 
-  const tmp = datas?.find((e: { category: string }) => e.category === "TMP");
-  const pop = datas?.find((e: { category: string }) => e.category === "POP");
-  const sky = datas?.find((e: { category: string }) => e.category === "SKY");
-  const pty = datas?.find((e: { category: string }) => e.category === "PTY");
+  // const tmp = datas?.find((e: { category: string }) => e.category === "TMP");
+  // const pop = datas?.find((e: { category: string }) => e.category === "POP");
+  // const sky = datas?.find((e: { category: string }) => e.category === "SKY");
+  // const pty = datas?.find((e: { category: string }) => e.category === "PTY");
 
-  let weatherImg = WeatherData(sky?.fcstValue, pty?.fcstValue);
-  console.log(sky);
+  // let weatherImg = WeatherData(sky?.fcstValue, pty?.fcstValue);
 
   return (
     <S.Wrapper>
@@ -36,8 +35,8 @@ function MainPage() {
       ) : (
         <S.Wrap>
           <S.TitleWrap>
-            <S.Time>{`현재 온도는 ${tmp?.fcstValue}도 입니다!`}</S.Time>
-            <S.Weathers src={weatherImg} />
+            {/* <S.Time>{`현재 온도는 ${tmp?.fcstValue}도 입니다!`}</S.Time>
+            <S.Weathers src={weatherImg} /> */}
           </S.TitleWrap>
           <S.Title>Recommend music for today's weather!</S.Title>
           <LP />

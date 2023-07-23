@@ -7,3 +7,8 @@ export interface Weather {
   nx: number;
   ny: number;
 }
+
+export interface www {
+  img: string;
+  wth: string;
+}
