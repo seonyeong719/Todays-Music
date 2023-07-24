@@ -5,9 +5,10 @@ import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
 import { TodayDate } from "../../Utils/dateTime";
 import { BaseTime } from "../../Utils/baseTime";
 import { WeatherData } from "../../Utils/weatherData";
+import { Weathers } from "../../Types/weatherType";
 
 function MainPage() {
-  const wth = {
+  const wth: Weathers = {
     numOfRows: 10,
     pageNo: 1,
     dataType: "JSON",
@@ -75,11 +76,11 @@ const TitleWrap = styled.div`
   justify-content: end;
 `;
 
-const Weathers = styled.img`
-  width: 4rem;
-  z-index: 11;
-  margin: 0 1rem;
-`;
+// const Weathers = styled.img`
+//   width: 4rem;
+//   z-index: 11;
+//   margin: 0 1rem;
+// `;
 
 const Time = styled.div`
   font-size: 1.5rem;
@@ -101,6 +102,6 @@ const S = {
   Wrap,
   TitleWrap,
   Title,
-  Weathers,
+  // Weathers,
   Time,
 };

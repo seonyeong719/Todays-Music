@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { flexAllCenter, flexJustifyCenter } from "../../Style/common";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { audioPlay } from "../../Atom/audioPlay.atom";
 import { ImPlay3 } from "react-icons/im";
@@ -25,6 +25,7 @@ function Music() {
 
   const audioRefs = useRef<any[]>([]);
   const [play, setPlay] = useRecoilState(audioPlay);
+  const [albumImg, setAlbumImg] = useState<any>();
 
   // 쿼리로 받아온 데이터지만 암시로 구현을 위해 다 적어줌
   const { data, isLoading }: any = useGetVillageWeather(wth);
@@ -40,13 +41,14 @@ function Music() {
   console.log(all);
 
   // 재생 버튼
-  const start = (idx: string | number) => {
+  const start = (idx: any) => {
     const audioRef = audioRefs.current.find((item) => item.idx === idx)?.ref;
     console.log(audioRef);
     if (audioRef && audioRef.current) {
       audioRef.current.play();
     }
     setPlay(true);
+    setAlbumImg(all?.children[idx].img);
   };
 
   // 일시정지 버튼
@@ -81,11 +83,13 @@ function Music() {
       <S.MusicWrapper>
         <S.Title>Today's Music</S.Title>
         <S.MusicContainer>
-          <img src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/8uEC/image/LkDCPehk0dm5Rz3m19-Y3DIC6u4" />
+          {albumImg ? <img src={albumImg} /> : <div>아무 이미지 넣을 예정</div>}
           <S.MusicList>
-            {ALL_MUSIC.map((list, idx: any) => (
+            {all?.children.map((list, idx: any) => (
               <S.Li key={idx}>
-                <div>{/* {list.title} - {list.singer} */}</div>
+                <div>
+                  {list.title} - {list.singer}
+                </div>
                 {play ? (
                   <S.IconPauseBtn onClick={() => stop(idx)} />
                 ) : (
@@ -99,7 +103,7 @@ function Music() {
                     }
                   }}
                   id={idx}
-                  // src={list.audio}
+                  src={list.audio}
                   controls
                 />
               </S.Li>
