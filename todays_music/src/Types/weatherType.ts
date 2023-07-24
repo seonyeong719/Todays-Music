@@ -1,4 +1,4 @@
-export interface Weather {
+export interface Weathers {
   numOfRows: number;
   pageNo: number;
   dataType: string;
@@ -10,5 +10,5 @@ export interface Weather {
 
 export interface www {
   img: string;
-  wth: string;
+  wthr: string;
 }

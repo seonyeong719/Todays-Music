@@ -9,10 +9,10 @@ import { TodayDate } from "../../Utils/dateTime";
 import { BaseTime } from "../../Utils/baseTime";
 import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
 import { WeatherData } from "../../Utils/weatherData";
-import { www } from "../../Types/weatherType";
+import { Weathers, www } from "../../Types/weatherType";
 
 function Weather() {
-  const wth = {
+  const wth: Weathers = {
     numOfRows: 10,
     pageNo: 1,
     dataType: "JSON",
@@ -32,13 +32,8 @@ function Weather() {
   const pop = datas?.find((e: { category: string }) => e.category === "POP");
   const pcp = datas?.find((e: { category: string }) => e.category === "PCP");
 
-  let weatherImg: string | www | undefined = WeatherData(sky?.fcstValue, pty?.fcstValue);
-
-  if (typeof weatherImg === "string") {
-    console.log(weatherImg); // 문자열이라면 출력
-  } else if (weatherImg) {
-    console.log(weatherImg.wth); // www 타입이라면 wth 속성 출력
-  }
+  let weatherImg: www | undefined = WeatherData(sky?.fcstValue, pty?.fcstValue);
+  console.log(weatherImg?.wthr);
 
   return (
     <S.Wrapper>
@@ -49,7 +44,7 @@ function Weather() {
           <S.Title>Today's Weather</S.Title>
           <S.Wrap>
             <S.Today>
-              {/* <img src={weatherImg?.img} /> */}
+              <img src={weatherImg?.img} />
               <div>영등포구 기준</div>
               <div>{`현재 기온은 ${tmp?.fcstValue}도 입니다!`}</div>
             </S.Today>

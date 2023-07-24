@@ -49,6 +49,7 @@ const Wrapper = styled.div`
   height: 90px;
   margin-bottom: 40px;
   padding: 20px 100px;
+  /* background-color: red; */
 `;
 
 const Wrap = styled.div`

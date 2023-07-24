@@ -1,13 +1,13 @@
-import { Weather } from "./../../Types/weatherType";
+import { Weathers } from "./../../Types/weatherType";
 import { useQuery } from "@tanstack/react-query";
 import WeatherApi from "../../Apis/villageWtrApi";
 
-const village = async (w: Weather) => {
+const village = async (w: Weathers) => {
   const res = await WeatherApi.villageW(w);
   return res.data;
 };
 
-export const useGetVillageWeather = (w: Weather) => {
+export const useGetVillageWeather = (w: Weathers) => {
   const { data, isLoading } = useQuery(["villageWeathers", w], () => village(w));
   return { data, isLoading };
 };

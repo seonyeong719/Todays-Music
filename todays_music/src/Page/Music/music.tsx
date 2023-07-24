@@ -6,11 +6,40 @@ import { audioPlay } from "../../Atom/audioPlay.atom";
 import { ImPlay3 } from "react-icons/im";
 import { IoIosPause } from "react-icons/io";
 import { ALL_MUSIC } from "../../Consts/musicList";
+import { WeatherData } from "../../Utils/weatherData";
+import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
+import { TodayDate } from "../../Utils/dateTime";
+import { BaseTime } from "../../Utils/baseTime";
+import { Weathers } from "../../Types/weatherType";
 
 function Music() {
+  const wth: Weathers = {
+    numOfRows: 10,
+    pageNo: 1,
+    dataType: "JSON",
+    base_date: TodayDate(),
+    base_time: BaseTime(),
+    nx: 59,
+    ny: 125,
+  };
+
   const audioRefs = useRef<any[]>([]);
   const [play, setPlay] = useRecoilState(audioPlay);
 
+  // 쿼리로 받아온 데이터지만 암시로 구현을 위해 다 적어줌
+  const { data, isLoading }: any = useGetVillageWeather(wth);
+  let datas = data?.response.body?.items?.item;
+
+  const sky = datas?.find((e: { category: string }) => e.category === "SKY");
+  const pty = datas?.find((e: { category: string }) => e.category === "PTY");
+
+  let weatherImg = WeatherData(sky?.fcstValue, pty?.fcstValue);
+
+  // 날씨 정보와 목데이터를 비교해 알맞은 데이터 찾아줌
+  let all = ALL_MUSIC.map((music) => music).find((el) => el.weather === weatherImg?.wthr);
+  console.log(all);
+
+  // 재생 버튼
   const start = (idx: string | number) => {
     const audioRef = audioRefs.current.find((item) => item.idx === idx)?.ref;
     console.log(audioRef);
@@ -20,6 +49,7 @@ function Music() {
     setPlay(true);
   };
 
+  // 일시정지 버튼
   const stop = (idx: string | number) => {
     const audioRef = audioRefs.current.find((item) => item.idx === idx)?.ref;
     if (audioRef && audioRef.current) {
@@ -28,6 +58,7 @@ function Music() {
     setPlay(false);
   };
 
+  // 클릭 시 타겟팅 해주는 기능
   useEffect(() => {
     // if (!audioRefs.current) return;
     // if (play) {
@@ -52,15 +83,6 @@ function Music() {
         <S.MusicContainer>
           <img src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/8uEC/image/LkDCPehk0dm5Rz3m19-Y3DIC6u4" />
           <S.MusicList>
-            {/* {SNOW_MUSIC.map((list, idx: any) => (
-              <S.Li>
-                <div>
-                  {list.title} - {list.singer}
-                </div>
-                {play ? <S.IconPauseBtn onClick={stop} /> : <S.IconPlayBtn onClick={start} />}
-                <audio ref={audioRef} id={idx} src={list.audio} controls></audio>
-              </S.Li>
-            ))} */}
             {ALL_MUSIC.map((list, idx: any) => (
               <S.Li key={idx}>
                 <div>{/* {list.title} - {list.singer} */}</div>
@@ -101,6 +123,7 @@ const Wrapper = styled.div`
 const MusicWrapper = styled.div`
   width: 60%;
   padding-top: 2rem;
+  /* background-color: yellow; */
 `;
 
 const Title = styled.span`
@@ -108,7 +131,7 @@ const Title = styled.span`
   color: white;
   font-family: "Lobster-Regular.ttf";
   ${flexJustifyCenter}
-  margin-top: 6rem;
+  /* margin-top: 6rem; */
   padding-bottom: 2rem;
   border-bottom: 1px solid white;
 `;
