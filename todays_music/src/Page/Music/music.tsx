@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { flexAllCenter, flexJustifyCenter } from "../../Style/common";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ImPlay3 } from "react-icons/im";
 import { IoIosPause } from "react-icons/io";
 import { ALL_MUSIC } from "../../Consts/musicList";
@@ -68,9 +68,6 @@ function Music() {
           <S.MusicList>
             {all?.children.map((list, idx: any) => (
               <S.Li key={idx} status={idx === play}>
-                <div>
-                  {list.title} - {list.singer}
-                </div>
                 {play === idx ? (
                   <S.IconPauseBtn onClick={() => stop(idx)} />
                 ) : (
@@ -82,6 +79,9 @@ function Music() {
                   src={list.audio}
                   controls
                 ></audio>
+                <div>
+                  {list.title} - {list.singer}
+                </div>
               </S.Li>
             ))}
           </S.MusicList>
@@ -119,7 +119,9 @@ const MusicContainer = styled.div`
   margin: 70px 50px 0 50px;
   & > img {
     min-width: 25rem;
+    max-width: 25rem;
     max-height: 25rem;
+    min-height: 25rem;
     margin-right: 100px;
   }
 `;
@@ -134,14 +136,16 @@ const MusicList = styled.div`
     font-size: 20px;
     margin-top: 5px;
     border-bottom: 1px solid white;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
   }
 `;
 
 const Li = styled.div<{ status: boolean }>`
   color: ${({ status }) => status && "red"};
+  display: flex;
+  align-items: center;
   & > div {
-    padding: 0.5rem 0;
+    padding: 0.8rem 1rem;
   }
   & > audio {
     display: none;

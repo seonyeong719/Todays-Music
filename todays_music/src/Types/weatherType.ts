@@ -11,4 +11,5 @@ export interface Weathers {
 export interface www {
   img: string;
   wthr: string;
+  back: string;
 }

@@ -5,7 +5,7 @@ import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
 import { TodayDate } from "../../Utils/dateTime";
 import { BaseTime } from "../../Utils/baseTime";
 import { WeatherData } from "../../Utils/weatherData";
-import { Weathers } from "../../Types/weatherType";
+import { Weathers, www } from "../../Types/weatherType";
 
 function MainPage() {
   const wth: Weathers = {
@@ -21,24 +21,19 @@ function MainPage() {
   const { data, isLoading }: any = useGetVillageWeather(wth);
   let datas = data?.response.body.items?.item;
 
-  // const tmp = datas?.find((e: { category: string }) => e.category === "TMP");
-  // const pop = datas?.find((e: { category: string }) => e.category === "POP");
-  // const sky = datas?.find((e: { category: string }) => e.category === "SKY");
-  // const pty = datas?.find((e: { category: string }) => e.category === "PTY");
+  const sky = datas?.find((e: { category: string }) => e.category === "SKY");
+  const pty = datas?.find((e: { category: string }) => e.category === "PTY");
 
-  // let weatherImg = WeatherData(sky?.fcstValue, pty?.fcstValue);
+  let weatherImg: www | undefined = WeatherData(sky?.fcstValue, pty?.fcstValue);
+  console.log(weatherImg?.back);
 
   return (
-    <S.Wrapper>
+    <S.Wrapper img={weatherImg?.back}>
       <Img src="/Assets/Img/ㅊㅁㅊㅁ.png" />
       {isLoading ? (
         <div>skeleton</div>
       ) : (
         <S.Wrap>
-          <S.TitleWrap>
-            {/* <S.Time>{`현재 온도는 ${tmp?.fcstValue}도 입니다!`}</S.Time>
-            <S.Weathers src={weatherImg} /> */}
-          </S.TitleWrap>
           <S.Title>Recommend music for today's weather!</S.Title>
           <LP />
         </S.Wrap>
@@ -48,10 +43,10 @@ function MainPage() {
 }
 export default MainPage;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ img: string | undefined }>`
   width: 100%;
   height: 100vh;
-  background-image: url("/Assets/Img/뮤직 날씨 좋음.jpg");
+  background-image: ${({ img }) => `url(${img})`};
   background-repeat: no-repeat;
   background-size: cover;
 `;
@@ -68,19 +63,6 @@ const Wrap = styled.div`
   ${flexAllCenter}
   flex-direction: column;
 `;
-
-const TitleWrap = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: end;
-`;
-
-// const Weathers = styled.img`
-//   width: 4rem;
-//   z-index: 11;
-//   margin: 0 1rem;
-// `;
 
 const Time = styled.div`
   font-size: 1.5rem;
@@ -100,8 +82,6 @@ const Title = styled.span`
 const S = {
   Wrapper,
   Wrap,
-  TitleWrap,
   Title,
-  // Weathers,
   Time,
 };

@@ -33,7 +33,6 @@ function Weather() {
   const pcp = datas?.find((e: { category: string }) => e.category === "PCP");
 
   let weatherImg: www | undefined = WeatherData(sky?.fcstValue, pty?.fcstValue);
-  console.log(weatherImg?.wthr);
 
   return (
     <S.Wrapper>
@@ -49,6 +48,13 @@ function Weather() {
               <div>{`현재 기온은 ${tmp?.fcstValue}도 입니다!`}</div>
             </S.Today>
             <S.TmpWrap>
+              <S.Tmp>
+                <S.TmpImg>
+                  <S.TImg src="/Assets/Img/최고기온.png" />
+                  <span>현재 기온</span>
+                </S.TmpImg>
+                <S.Ment>{`${tmp?.fcstValue} 도`}</S.Ment>
+              </S.Tmp>
               <S.Tmp>
                 <S.TmpImg>
                   <S.TImg src="/Assets/Img/비.png" />
@@ -97,7 +103,7 @@ const Wrap = styled.div`
 
 const Today = styled.div`
   width: 25rem;
-  height: 34rem;
+  height: 32rem;
   border-radius: 1rem;
   box-shadow: 2px 2px 2px 2px gray;
   ${flexAlignCenter}
