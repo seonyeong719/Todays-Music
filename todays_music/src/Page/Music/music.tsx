@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { flexAllCenter, flexJustifyCenter } from "../../Style/common";
 import { useEffect, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
-import { audioPlay } from "../../Atom/audioPlay.atom";
 import { ImPlay3 } from "react-icons/im";
 import { IoIosPause } from "react-icons/io";
 import { ALL_MUSIC } from "../../Consts/musicList";
@@ -24,12 +22,13 @@ function Music() {
   };
 
   const audioRefs = useRef<any[]>([]);
-  const [play, setPlay] = useRecoilState(audioPlay);
+
+  const [play, setPlay] = useState<number | null>(null);
   const [albumImg, setAlbumImg] = useState<any>();
 
   // 쿼리로 받아온 데이터지만 암시로 구현을 위해 다 적어줌
   const { data, isLoading }: any = useGetVillageWeather(wth);
-  let datas = data?.response.body?.items?.item;
+  let datas = data?.response?.body?.items?.item;
 
   const sky = datas?.find((e: { category: string }) => e.category === "SKY");
   const pty = datas?.find((e: { category: string }) => e.category === "PTY");
@@ -42,70 +41,47 @@ function Music() {
 
   // 재생 버튼
   const start = (idx: any) => {
-    const audioRef = audioRefs.current.find((item) => item.idx === idx)?.ref;
-    console.log(audioRef);
-    if (audioRef && audioRef.current) {
-      audioRef.current.play();
+    audioRefs?.current?.forEach((item) => {
+      item.pause();
+    });
+    if (audioRefs.current) {
+      audioRefs?.current[idx].play();
     }
-    setPlay(true);
+    setPlay(idx);
     setAlbumImg(all?.children[idx].img);
   };
 
   // 일시정지 버튼
-  const stop = (idx: string | number) => {
-    const audioRef = audioRefs.current.find((item) => item.idx === idx)?.ref;
-    if (audioRef && audioRef.current) {
-      audioRef.current.pause();
+  const stop = (idx: any) => {
+    if (audioRefs.current) {
+      audioRefs?.current[idx].pause();
     }
-    setPlay(false);
+    setPlay(null);
   };
-
-  // 클릭 시 타겟팅 해주는 기능
-  useEffect(() => {
-    // if (!audioRefs.current) return;
-    // if (play) {
-    //   audioRefs.current.play();
-    // } else audioRefs.current.pause();
-    audioRefs.current.forEach((item) => {
-      const audioRef = item.ref.current;
-      if (audioRef) {
-        if (play) {
-          audioRef.play();
-        } else {
-          audioRef.pause();
-        }
-      }
-    });
-  }, [play]);
 
   return (
     <S.Wrapper>
       <S.MusicWrapper>
         <S.Title>Today's Music</S.Title>
         <S.MusicContainer>
-          {albumImg ? <img src={albumImg} /> : <div>아무 이미지 넣을 예정</div>}
+          {albumImg ? <img src={albumImg} /> : <img src="/Assets/Img/Logo배경.png" />}
           <S.MusicList>
             {all?.children.map((list, idx: any) => (
-              <S.Li key={idx}>
+              <S.Li key={idx} status={idx === play}>
                 <div>
                   {list.title} - {list.singer}
                 </div>
-                {play ? (
+                {play === idx ? (
                   <S.IconPauseBtn onClick={() => stop(idx)} />
                 ) : (
                   <S.IconPlayBtn onClick={() => start(idx)} />
                 )}
-                {/* <audio ref={(ref) => (audioRefs[idx] = ref)} id={idx} src={list.audio} controls></audio> */}
                 <audio
-                  ref={(ref) => {
-                    if (ref) {
-                      audioRefs.current[idx] = { ref, idx };
-                    }
-                  }}
+                  ref={(element) => (audioRefs.current[idx] = element)}
                   id={idx}
                   src={list.audio}
                   controls
-                />
+                ></audio>
               </S.Li>
             ))}
           </S.MusicList>
@@ -127,7 +103,6 @@ const Wrapper = styled.div`
 const MusicWrapper = styled.div`
   width: 60%;
   padding-top: 2rem;
-  /* background-color: yellow; */
 `;
 
 const Title = styled.span`
@@ -135,7 +110,6 @@ const Title = styled.span`
   color: white;
   font-family: "Lobster-Regular.ttf";
   ${flexJustifyCenter}
-  /* margin-top: 6rem; */
   padding-bottom: 2rem;
   border-bottom: 1px solid white;
 `;
@@ -163,12 +137,14 @@ const MusicList = styled.div`
     padding-bottom: 20px;
   }
 `;
-const Li = styled.div`
+
+const Li = styled.div<{ status: boolean }>`
+  color: ${({ status }) => status && "red"};
   & > div {
     padding: 0.5rem 0;
   }
   & > audio {
-    width: 27rem;
+    display: none;
   }
 `;
 
