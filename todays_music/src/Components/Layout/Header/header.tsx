@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { flexAlignCenter, flexAllCenter } from "../../../Style/common";
+import MobileHeader from "./mobileHeader";
 
 function Header() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ function Header() {
         <Link to="/">
           <S.LogoImg src="/Assets/Img/logo.png" />
         </Link>
+        <MobileHeader />
         <S.NavBar>
           {navMenu.map((nav, idx) => (
             <S.Li key={idx} onClick={() => onClickNav(nav.address)}>
@@ -81,6 +83,9 @@ const NavBar = styled.ul`
     cursor: pointer;
     position: relative;
     list-style: none;
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    display: none;
   }
 `;
 

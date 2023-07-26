@@ -96,7 +96,7 @@ export default Music;
 const Wrapper = styled.div`
   background: linear-gradient(#d1c0a8, #e8ded1, #fafdf3);
   width: 100%;
-  height: 100vh;
+  height: 100%;
   ${flexJustifyCenter}
   align-items: start;
   padding-top: 7rem;
@@ -105,6 +105,7 @@ const Wrapper = styled.div`
 const MusicWrapper = styled.div`
   width: 60%;
   padding-top: 1rem;
+  height: 100vh;
   @media ${({ theme }) => theme.device.mobile} {
     width: 90%;
   }
@@ -167,6 +168,9 @@ const Li = styled.div<{ status: boolean }>`
   & > div {
     padding: 0.9rem 1.5rem;
     font-size: 1.6rem;
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 2rem;
+    }
   }
   & > audio {
     display: none;

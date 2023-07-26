@@ -77,6 +77,9 @@ const Title = styled.span`
   margin-bottom: 100px;
   font-family: "Lobster-Regular.ttf";
   z-index: 11;
+  @media ${({ theme }) => theme.device.mobile} {
+    padding: 0 2rem;
+  }
 `;
 
 const S = {

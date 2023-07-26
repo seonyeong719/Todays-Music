@@ -83,7 +83,7 @@ export default Weather;
 const Wrapper = styled.div`
   background: linear-gradient(#add7fb, #bddff9, #d1e6fb);
   width: 100%;
-  height: 100vh;
+  height: 100%;
   ${flexJustifyCenter}
   align-items: start;
   padding-top: 7rem;
@@ -91,6 +91,7 @@ const Wrapper = styled.div`
 
 const TitleWrap = styled.div`
   width: 60%;
+  height: 100vh;
   @media ${({ theme }) => theme.device.mobile} {
     width: 90%;
   }
@@ -99,6 +100,10 @@ const TitleWrap = styled.div`
 const Wrap = styled.div`
   ${flexJustifyCenter}
   padding-top: 2rem;
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Today = styled.div`
@@ -120,6 +125,9 @@ const Today = styled.div`
   & > div {
     font-size: 1.7rem;
     margin-bottom: 1rem;
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 80%;
   }
 `;
 
@@ -144,6 +152,10 @@ const TmpWrap = styled.div`
     box-shadow: 2px 2px 2px 1px gray;
     height: 6.5rem;
     margin-bottom: 2rem;
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 80%;
+    margin: 3rem 0;
   }
 `;
 

@@ -28,6 +28,7 @@ const GlobalStyles = createGlobalStyle`
         @media screen and (max-width:820px) {
             font-size:50%;
         }
+		height: 100%;
     }
 	body{
 		font-family: 'LINESeedKR-Rg';
