@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexAllCenter, flexJustifyCenter } from "../../Style/common";
+import { flexJustifyCenter } from "../../Style/common";
 import { useRef, useState } from "react";
 import { ImPlay3 } from "react-icons/im";
 import { IoIosPause } from "react-icons/io";
@@ -27,7 +27,7 @@ function Music() {
   const [albumImg, setAlbumImg] = useState<any>();
 
   // 쿼리로 받아온 데이터지만 암시로 구현을 위해 다 적어줌
-  const { data, isLoading }: any = useGetVillageWeather(wth);
+  const { data }: any = useGetVillageWeather(wth);
   let datas = data?.response?.body?.items?.item;
 
   const sky = datas?.find((e: { category: string }) => e.category === "SKY");
@@ -79,7 +79,7 @@ function Music() {
                   src={list.audio}
                   controls
                 ></audio>
-                <div>
+                <div onClick={() => start(idx)}>
                   {list.title} - {list.singer}
                 </div>
               </S.Li>
@@ -97,12 +97,17 @@ const Wrapper = styled.div`
   background: linear-gradient(#d1c0a8, #e8ded1, #fafdf3);
   width: 100%;
   height: 100vh;
-  ${flexAllCenter}
+  ${flexJustifyCenter}
+  align-items: start;
+  padding-top: 7rem;
 `;
 
 const MusicWrapper = styled.div`
   width: 60%;
-  padding-top: 2rem;
+  padding-top: 1rem;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+  }
 `;
 
 const Title = styled.span`
@@ -110,33 +115,48 @@ const Title = styled.span`
   color: white;
   font-family: "Lobster-Regular.ttf";
   ${flexJustifyCenter}
+  text-align: center;
   padding-bottom: 2rem;
   border-bottom: 1px solid white;
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-direction: column;
+  }
 `;
 
 const MusicContainer = styled.div`
   display: flex;
-  margin: 70px 50px 0 50px;
+  margin-top: 7rem;
+  width: 100%;
   & > img {
     min-width: 25rem;
     max-width: 25rem;
     max-height: 25rem;
     min-height: 25rem;
-    margin-right: 100px;
+    margin-right: 8rem;
+    @media ${({ theme }) => theme.device.mobile} {
+      min-width: 40rem;
+      max-width: 40rem;
+      max-height: 40rem;
+      min-height: 40rem;
+      margin-right: 0;
+      margin-bottom: 5rem;
+    }
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
 const MusicList = styled.div`
   text-align: start;
   width: 100%;
-  & > h3 {
-    font-size: 40px;
-  }
   & > div {
-    font-size: 20px;
-    margin-top: 5px;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
     border-bottom: 1px solid white;
     padding-bottom: 10px;
+    cursor: pointer;
   }
 `;
 
@@ -145,7 +165,8 @@ const Li = styled.div<{ status: boolean }>`
   display: flex;
   align-items: center;
   & > div {
-    padding: 0.8rem 1rem;
+    padding: 0.9rem 1.5rem;
+    font-size: 1.6rem;
   }
   & > audio {
     display: none;

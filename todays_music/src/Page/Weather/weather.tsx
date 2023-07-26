@@ -1,10 +1,5 @@
 import { styled } from "styled-components";
-import {
-  flexAlignCenter,
-  flexAllCenter,
-  flexJustifyCenter,
-  flexSpaceBetween,
-} from "../../Style/common";
+import { flexAlignCenter, flexJustifyCenter, flexSpaceBetween } from "../../Style/common";
 import { TodayDate } from "../../Utils/dateTime";
 import { BaseTime } from "../../Utils/baseTime";
 import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
@@ -89,11 +84,16 @@ const Wrapper = styled.div`
   background: linear-gradient(#add7fb, #bddff9, #d1e6fb);
   width: 100%;
   height: 100vh;
-  ${flexAllCenter}
+  ${flexJustifyCenter}
+  align-items: start;
+  padding-top: 7rem;
 `;
 
 const TitleWrap = styled.div`
   width: 60%;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+  }
 `;
 
 const Wrap = styled.div`
@@ -131,6 +131,9 @@ const Title = styled.span`
   padding-bottom: 2rem;
   margin: 2rem 0;
   border-bottom: 1px solid white;
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-top: 5rem;
+  }
 `;
 
 const TmpWrap = styled.div`

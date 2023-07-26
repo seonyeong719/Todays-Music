@@ -11,10 +11,10 @@ function LP() {
 export default LP;
 
 const Box = styled.div`
-  width: 450px;
-  height: 350px;
+  width: 32rem;
+  height: 24rem;
   background-color: beige;
-  border-radius: 8px;
+  border-radius: 0.6rem;
   box-shadow: 2px 2px 2px 1px gray;
   position: relative;
   z-index: 10;
@@ -22,19 +22,19 @@ const Box = styled.div`
 
 const Img = styled.img`
   position: absolute;
-  height: 320px;
-  top: 15px;
-  left: 15px;
+  height: 22rem;
+  top: 1rem;
+  left: 1rem;
   z-index: 20;
   box-shadow: 1px 1px 1px 1px gray;
 `;
 
 const Lp = styled.img`
-  height: 330px;
+  height: 22.5rem;
   position: absolute;
   z-index: 10;
-  top: 10px;
-  right: -80px;
+  top: 0.8rem;
+  right: -5.5rem;
   animation: rotate_image 2s linear infinite;
   transform-origin: 50% 50%;
   @keyframes rotate_image {

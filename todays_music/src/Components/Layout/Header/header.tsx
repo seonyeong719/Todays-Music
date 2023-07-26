@@ -46,20 +46,27 @@ const Wrapper = styled.div`
   top: 0;
   z-index: 99;
   align-items: center;
-  height: 90px;
-  margin-bottom: 40px;
-  padding: 20px 100px;
-  /* background-color: red; */
+  height: 8.5rem;
+  padding: 2rem 8rem;
+  @media ${({ theme }) => theme.device.mobile} {
+    padding: 6rem 0;
+  }
 `;
 
 const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
   width: 60%;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 95%;
+  }
 `;
 
 const LogoImg = styled.img`
   width: 8rem;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 10rem;
+  }
 `;
 const NavBar = styled.ul`
   ${flexAlignCenter}
