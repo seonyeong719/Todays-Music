@@ -2,20 +2,10 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { flexAlignCenter, flexAllCenter } from "../../../Style/common";
 import MobileHeader from "./mobileHeader";
+import { navMenu } from "../../../Consts/navMenuList";
 
 function Header() {
   const navigate = useNavigate();
-
-  const navMenu = [
-    {
-      title: "오늘의 음악",
-      address: "/todays-music",
-    },
-    {
-      title: "오늘의 날씨",
-      address: "/todays-weather",
-    },
-  ];
 
   const onClickNav = (page: string) => {
     navigate(`${page}`);
@@ -51,13 +41,14 @@ const Wrapper = styled.div`
   height: 8.5rem;
   padding: 2rem 8rem;
   @media ${({ theme }) => theme.device.mobile} {
-    padding: 6rem 0;
+    padding: 6rem 1rem;
   }
 `;
 
 const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 60%;
   @media ${({ theme }) => theme.device.mobile} {
     width: 95%;
@@ -70,6 +61,7 @@ const LogoImg = styled.img`
     width: 10rem;
   }
 `;
+
 const NavBar = styled.ul`
   ${flexAlignCenter}
   display: flex;

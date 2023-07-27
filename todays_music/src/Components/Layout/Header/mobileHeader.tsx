@@ -1,14 +1,20 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { styled } from "styled-components";
 import { flexAlignCenter } from "../../../Style/common";
+import { useState } from "react";
 
 function MobileHeader() {
+  const [open, setOpen] = useState<boolean>(false);
+
+  const onSideBarBtn = () => {
+    setOpen((prev) => !prev);
+  };
   return (
     <S.Wrapper>
       <S.Wrap>
         <S.Title>Sunny Sounds</S.Title>
-        <S.Hamburger />
       </S.Wrap>
+      <S.Hamburger onClick={onSideBarBtn} />
     </S.Wrapper>
   );
 }
@@ -26,13 +32,23 @@ const Wrapper = styled.div`
 const Wrap = styled.div`
   ${flexAlignCenter}
 `;
+
+const LogoImg = styled.img`
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 10rem;
+  }
+`;
+
 const Title = styled.span`
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: "LINESeedKR-Bd";
   color: ${({ theme }) => theme.COLOR.subColor}; // 색깔 추후 수정 예정
 `;
+
 const Hamburger = styled(RxHamburgerMenu)`
   color: white;
-  font-size: 4rem;
+  font-size: 3.5rem;
+  cursor: pointer;
 `;
-const S = { Wrapper, Wrap, Title, Hamburger };
+
+const S = { Wrapper, Wrap, LogoImg, Title, Hamburger };
