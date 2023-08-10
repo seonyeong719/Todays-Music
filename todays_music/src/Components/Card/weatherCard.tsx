@@ -1,14 +1,14 @@
 import { styled } from "styled-components";
 import { flexAlignCenter, flexSpaceBetween } from "../../Style/common";
 
-function WeatherCard() {
+function WeatherCard(props: { img: string; title: string; comment: string }): React.ReactElement {
   return (
     <S.Tmp>
       <S.TmpImg>
-        <S.TImg src="/Assets/Img/강수량.png" />
-        <span>강수량</span>
+        <S.TImg src={props.img} />
+        <span>{props.title}</span>
       </S.TmpImg>
-      <S.Ment>{}</S.Ment>
+      <S.Ment>{props.comment}</S.Ment>
     </S.Tmp>
   );
 }

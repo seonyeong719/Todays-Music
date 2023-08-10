@@ -5,6 +5,7 @@ import { BaseTime } from "../../Utils/baseTime";
 import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
 import { WeatherData } from "../../Utils/weatherData";
 import { Weathers, www } from "../../Types/weatherType";
+import WeatherCard from "../../Components/Card/weatherCard";
 
 function Weather() {
   const wth: Weathers = {
@@ -43,34 +44,26 @@ function Weather() {
               <div>{`현재 기온은 ${tmp?.fcstValue}도 입니다!`}</div>
             </S.Today>
             <S.TmpWrap>
-              <S.Tmp>
-                <S.TmpImg>
-                  <S.TImg src="/Assets/Img/최고기온.png" />
-                  <span>현재 기온</span>
-                </S.TmpImg>
-                <S.Ment>{`${tmp?.fcstValue} 도`}</S.Ment>
-              </S.Tmp>
-              <S.Tmp>
-                <S.TmpImg>
-                  <S.TImg src="/Assets/Img/비.png" />
-                  <span>강수 확률</span>
-                </S.TmpImg>
-                <S.Ment>{`${pop?.fcstValue} %`}</S.Ment>
-              </S.Tmp>
-              <S.Tmp>
-                <S.TmpImg>
-                  <S.TImg src="/Assets/Img/풍속.png" />
-                  <span>풍속</span>
-                </S.TmpImg>
-                <S.Ment>{`${wsd?.fcstValue} m/s`}</S.Ment>
-              </S.Tmp>
-              <S.Tmp>
-                <S.TmpImg>
-                  <S.TImg src="/Assets/Img/강수량.png" />
-                  <span>강수량</span>
-                </S.TmpImg>
-                <S.Ment>{`${pcp?.fcstValue}`}</S.Ment>
-              </S.Tmp>
+              <WeatherCard
+                img={"/Assets/Img/최고기온.png"}
+                title={"현재 기온"}
+                comment={`${tmp?.fcstValue} 도`}
+              />
+              <WeatherCard
+                img={"/Assets/Img/비.png"}
+                title={"강수 확률"}
+                comment={`${pop?.fcstValue} %`}
+              />
+              <WeatherCard
+                img={"/Assets/Img/풍속.png"}
+                title={"풍속"}
+                comment={`${wsd?.fcstValue} m/s`}
+              />
+              <WeatherCard
+                img={"/Assets/Img/강수량.png"}
+                title={"강수량"}
+                comment={`${pcp?.fcstValue}`}
+              />
             </S.TmpWrap>
           </S.Wrap>
         </S.TitleWrap>
