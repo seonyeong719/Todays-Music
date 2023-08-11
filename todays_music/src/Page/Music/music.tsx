@@ -21,7 +21,7 @@ function Music() {
     ny: 125,
   };
 
-  const audioRefs = useRef<any[]>([]);
+  const audioRefs = useRef<HTMLAudioElement[]>([]);
 
   const [play, setPlay] = useState<number | null>(null);
   const [albumImg, setAlbumImg] = useState<any>();
@@ -29,6 +29,8 @@ function Music() {
   // 쿼리로 받아온 데이터지만 암시로 구현을 위해 다 적어줌
   const { data }: any = useGetVillageWeather(wth);
   let datas = data?.response?.body?.items?.item;
+
+  console.log(data);
 
   const sky = datas?.find((e: { category: string }) => e.category === "SKY");
   const pty = datas?.find((e: { category: string }) => e.category === "PTY");
@@ -74,7 +76,11 @@ function Music() {
                   <S.IconPlayBtn onClick={() => start(idx)} />
                 )}
                 <audio
-                  ref={(element) => (audioRefs.current[idx] = element)}
+                  ref={(element: HTMLAudioElement | null) => {
+                    if (element) {
+                      audioRefs.current[idx] = element;
+                    }
+                  }}
                   id={idx}
                   src={list.audio}
                   controls

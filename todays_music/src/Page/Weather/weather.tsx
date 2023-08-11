@@ -152,31 +152,6 @@ const TmpWrap = styled.div`
   }
 `;
 
-const Tmp = styled.div`
-  ${flexSpaceBetween}
-  cursor: pointer;
-  &:hover {
-    scale: 1.02;
-    transition: all 0.8s;
-  }
-`;
-
-const TmpImg = styled.div`
-  ${flexAlignCenter}
-  &>span {
-    font-size: 1.2rem;
-  }
-`;
-
-const TImg = styled.img`
-  width: 4.2rem;
-  margin: 0 1rem;
-`;
-
-const Ment = styled.span`
-  margin-right: 1.5rem;
-  font-size: 2rem;
-`;
 const S = {
   Wrapper,
   TitleWrap,
@@ -184,8 +159,4 @@ const S = {
   Wrap,
   Title,
   TmpWrap,
-  Tmp,
-  TmpImg,
-  TImg,
-  Ment,
 };
