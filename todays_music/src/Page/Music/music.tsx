@@ -27,7 +27,7 @@ function Music() {
   const [albumImg, setAlbumImg] = useState<any>();
 
   // 쿼리로 받아온 데이터지만 암시로 구현을 위해 다 적어줌
-  const { data }: any = useGetVillageWeather(wth);
+  const { data, isLoading }: any = useGetVillageWeather(wth);
   let datas = data?.response?.body?.items?.item;
 
   console.log(data);
