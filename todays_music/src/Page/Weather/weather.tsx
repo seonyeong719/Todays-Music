@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { flexAlignCenter, flexJustifyCenter, flexSpaceBetween } from "../../Style/common";
+import { flexAlignCenter, flexJustifyCenter } from "../../Style/common";
 import { TodayDate } from "../../Utils/dateTime";
 import { BaseTime } from "../../Utils/baseTime";
 import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
@@ -19,7 +19,7 @@ function Weather() {
   };
 
   const { data, isLoading }: any = useGetVillageWeather(wth);
-  let datas = data?.response.body.items?.item;
+  let datas = data?.response.body?.items?.item;
 
   const tmp = datas?.find((e: { category: string }) => e.category === "TMP");
   const sky = datas?.find((e: { category: string }) => e.category === "SKY");

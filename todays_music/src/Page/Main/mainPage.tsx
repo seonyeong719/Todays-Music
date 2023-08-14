@@ -19,7 +19,7 @@ function MainPage() {
   };
 
   const { data, isLoading }: any = useGetVillageWeather(wth);
-  let datas = data?.response.body.items?.item;
+  let datas = data?.response.body?.items?.item;
 
   const sky = datas?.find((e: { category: string }) => e.category === "SKY");
   const pty = datas?.find((e: { category: string }) => e.category === "PTY");
