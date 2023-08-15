@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { flexAlignCenter, flexAllCenter } from "../../../Style/common";
 import MobileHeader from "./mobileHeader";
 import { NAV_MENU } from "../../../Consts/navMenuList";
 
 function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onClickNav = (page: string) => {
     navigate(`${page}`);
@@ -20,7 +21,11 @@ function Header() {
         <MobileHeader />
         <S.NavBar>
           {NAV_MENU.map((nav, idx) => (
-            <S.Li key={idx} onClick={() => onClickNav(nav.address)}>
+            <S.Li
+              key={idx}
+              state={nav.address === location.pathname}
+              onClick={() => onClickNav(nav.address)}
+            >
               {nav.title}
             </S.Li>
           ))}
@@ -65,7 +70,7 @@ const LogoImg = styled.img`
 const NavBar = styled.ul`
   ${flexAlignCenter}
   display: flex;
-  font-size: ${({ theme }) => theme.FONT_SIZE.base};
+  font-size: 1.1rem;
   font-weight: ${({ theme }) => theme.FONT_WEIGHT.bold};
   color: ${({ theme }) => theme.COLOR.fontColor[300]};
 
@@ -91,8 +96,9 @@ const UnderBar = styled.div`
   bottom: -10px;
 `;
 
-const Li = styled.li`
+const Li = styled.li<{ state: boolean }>`
   color: white;
+  color: ${({ state }) => (state ? "black" : "")};
 `;
 
 const S = {
