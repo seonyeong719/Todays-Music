@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { flexAlignCenter, flexAllCenter } from "../../../Style/common";
 import MobileHeader from "./mobileHeader";
-import { navMenu } from "../../../Consts/navMenuList";
+import { NAV_MENU } from "../../../Consts/navMenuList";
 
 function Header() {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Header() {
         </Link>
         <MobileHeader />
         <S.NavBar>
-          {navMenu.map((nav, idx) => (
+          {NAV_MENU.map((nav, idx) => (
             <S.Li key={idx} onClick={() => onClickNav(nav.address)}>
               {nav.title}
             </S.Li>

@@ -18,7 +18,7 @@ function Weather() {
     ny: 125,
   };
 
-  const { data, isLoading }: any = useGetVillageWeather(wth);
+  const { data, isLoading } = useGetVillageWeather(wth);
   let datas = data?.response.body?.items?.item;
 
   const tmp = datas?.find((e: { category: string }) => e.category === "TMP");

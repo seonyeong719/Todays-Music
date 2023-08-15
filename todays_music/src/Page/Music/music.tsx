@@ -9,7 +9,7 @@ import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
 import { TodayDate } from "../../Utils/dateTime";
 import { BaseTime } from "../../Utils/baseTime";
 import { Weathers } from "../../Types/weatherType";
-
+import MusicSkeleton from "../Skeleton/musicSkeleton";
 function Music() {
   const wth: Weathers = {
     numOfRows: 10,
@@ -60,6 +60,10 @@ function Music() {
     }
     setPlay(null);
   };
+
+  if (isLoading) {
+    return <MusicSkeleton />;
+  }
 
   return (
     <S.Wrapper>
