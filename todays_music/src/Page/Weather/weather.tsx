@@ -6,6 +6,7 @@ import { useGetVillageWeather } from "../../Hooks/Queries/get-weather-query";
 import { WeatherData } from "../../Utils/weatherData";
 import { Weathers, www } from "../../Types/weatherType";
 import WeatherCard from "../../Components/Card/weatherCard";
+import WeatherSkeleton from "../Skeleton/weatherSkeleton";
 
 function Weather() {
   const wth: Weathers = {
@@ -29,6 +30,10 @@ function Weather() {
   const pcp = datas?.find((e: { category: string }) => e.category === "PCP");
 
   let weatherImg: www | undefined = WeatherData(sky?.fcstValue, pty?.fcstValue);
+
+  if (isLoading) {
+    return <WeatherSkeleton />;
+  }
 
   return (
     <S.Wrapper>

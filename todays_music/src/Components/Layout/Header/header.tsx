@@ -63,7 +63,7 @@ const Wrap = styled.div`
 const LogoImg = styled.img`
   width: 8rem;
   @media ${({ theme }) => theme.device.mobile} {
-    width: 10rem;
+    width: 9rem;
   }
 `;
 

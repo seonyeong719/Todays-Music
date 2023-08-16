@@ -24,6 +24,7 @@ export default MusicSkeleton;
 const Wrapper = styled.div`
   width: 100%;
   ${flexAllCenter}
+  height: 100vh;
   background-color: rgb(132, 132, 132);
   @media ${({ theme }) => theme.device.mobile} {
     display: flex;
