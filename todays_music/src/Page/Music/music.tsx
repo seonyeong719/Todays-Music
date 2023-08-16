@@ -24,7 +24,7 @@ function Music() {
   const audioRefs = useRef<HTMLAudioElement[]>([]);
 
   const [play, setPlay] = useState<number | null>(null);
-  const [albumImg, setAlbumImg] = useState<any>();
+  const [albumImg, setAlbumImg] = useState<string>();
 
   // 쿼리로 받아온 데이터지만 암시로 구현을 위해 다 적어줌
   const { data, isLoading }: any = useGetVillageWeather(wth);
@@ -42,7 +42,7 @@ function Music() {
   console.log(all);
 
   // 재생 버튼
-  const start = (idx: any) => {
+  const start = (idx: number) => {
     audioRefs?.current?.forEach((item) => {
       item.pause();
     });
@@ -54,7 +54,7 @@ function Music() {
   };
 
   // 일시정지 버튼
-  const stop = (idx: any) => {
+  const stop = (idx: number) => {
     if (audioRefs.current) {
       audioRefs?.current[idx].pause();
     }
@@ -72,7 +72,7 @@ function Music() {
         <S.MusicContainer>
           {albumImg ? <img src={albumImg} /> : <img src="/Assets/Img/Logo배경.png" />}
           <S.MusicList>
-            {all?.children.map((list, idx: any) => (
+            {all?.children.map((list, idx: number) => (
               <S.Li key={idx} status={idx === play}>
                 {play === idx ? (
                   <S.IconPauseBtn onClick={() => stop(idx)} />
@@ -85,7 +85,7 @@ function Music() {
                       audioRefs.current[idx] = element;
                     }
                   }}
-                  id={idx}
+                  id={String(idx)}
                   src={list.audio}
                   controls
                 ></audio>
