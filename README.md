@@ -17,8 +17,8 @@
 
 ## 🖥️ 서비스 화면
 
-![musicScreen](https://github.com/seonyeong719/Todays-Music/assets/117560052/0596d596-88c8-49df-9872-924177cd8292)
+<img width="598" alt="SunnySounds" src="https://github.com/seonyeong719/Todays-Music/assets/117560052/b664f829-aa12-4f16-a440-0f009251e5f1">
 
 ## ⚒️ 기술 스택
 
-![stack](https://github.com/seonyeong719/Todays-Music/assets/117560052/3cc68355-3ba3-45e4-b7d7-af84f9188311)
+![날씨](https://github.com/seonyeong719/Todays-Music/assets/117560052/9c07201a-7b4b-451c-acbb-ee975f250a0c)

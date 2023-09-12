@@ -26,7 +26,7 @@ function Music() {
   const [play, setPlay] = useState<number | null>(null);
   const [albumImg, setAlbumImg] = useState<string>();
 
-  // 쿼리로 받아온 데이터지만 암시로 구현을 위해 다 적어줌
+  // 쿼리로 받아온 데이터지만 임시로 구현을 위해 다 적어줌
   const { data, isLoading }: any = useGetVillageWeather(wth);
   let datas = data?.response?.body?.items?.item;
 
